@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+//#import "Prompt.h"
+#import "PromptView.h"
 
-@interface ViewController ()
+@interface ViewController ()<promptViewDelegate>
+
+//@property (nonatomic, strong) Prompt *prompt;
+@property (nonatomic, strong) PromptView *promptView;
 
 @end
 
@@ -16,12 +21,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    //名字 与 图片名字
+    NSDictionary *dic = @{@"新浪微博":@"sinaicon",@"QQ好友":@"qqicon",@"朋友圈":@"wechattimeline",@"微信好友":@"wechaticon",@"QQ空间":@"qzoneicon"};
+    
+//    self.prompt = [[Prompt alloc] init];
+//    [self.prompt setItemDic:dic];
+    self.promptView = [[PromptView alloc] init];
+    [self.promptView setDelegate:self];
+    [self.promptView setColumns:2];
+    [self.promptView setItemDic:dic];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)clicks:(id)sender {
+    [self.promptView show];
+}
+
+//分享按钮代理
+- (void)shareBtnClicked:(UIButton *)btn{
+    NSLog(@"1");
+}
+//复制链接按钮代理
+- (void)copyBtnClicked:(UIButton *)btn{
+    NSLog(@"2");
 }
 
 @end

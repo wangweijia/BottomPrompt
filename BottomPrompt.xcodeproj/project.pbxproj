@@ -14,6 +14,7 @@
 		18E7303E1AD50DD40056B603 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E7303D1AD50DD40056B603 /* Images.xcassets */; };
 		18E730411AD50DD40056B603 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E7303F1AD50DD40056B603 /* LaunchScreen.xib */; };
 		18E7304D1AD50DD40056B603 /* BottomPromptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E7304C1AD50DD40056B603 /* BottomPromptTests.m */; };
+		18E7305D1AD5127C0056B603 /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E7305C1AD5127C0056B603 /* PromptView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		18E730461AD50DD40056B603 /* BottomPromptTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BottomPromptTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E7304B1AD50DD40056B603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18E7304C1AD50DD40056B603 /* BottomPromptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomPromptTests.m; sourceTree = "<group>"; };
+		18E7305B1AD5127C0056B603 /* PromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromptView.h; sourceTree = "<group>"; };
+		18E7305C1AD5127C0056B603 /* PromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromptView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +84,8 @@
 		18E7302F1AD50DD40056B603 /* BottomPrompt */ = {
 			isa = PBXGroup;
 			children = (
-				18E730341AD50DD40056B603 /* AppDelegate.h */,
-				18E730351AD50DD40056B603 /* AppDelegate.m */,
-				18E730371AD50DD40056B603 /* ViewController.h */,
-				18E730381AD50DD40056B603 /* ViewController.m */,
-				18E7303A1AD50DD40056B603 /* Main.storyboard */,
-				18E7303D1AD50DD40056B603 /* Images.xcassets */,
-				18E7303F1AD50DD40056B603 /* LaunchScreen.xib */,
+				18E730571AD50E8C0056B603 /* Other */,
+				18E730561AD50DEE0056B603 /* Prompt */,
 				18E730301AD50DD40056B603 /* Supporting Files */,
 			);
 			path = BottomPrompt;
@@ -117,6 +115,29 @@
 				18E7304B1AD50DD40056B603 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18E730561AD50DEE0056B603 /* Prompt */ = {
+			isa = PBXGroup;
+			children = (
+				18E7305B1AD5127C0056B603 /* PromptView.h */,
+				18E7305C1AD5127C0056B603 /* PromptView.m */,
+			);
+			name = Prompt;
+			sourceTree = "<group>";
+		};
+		18E730571AD50E8C0056B603 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				18E730341AD50DD40056B603 /* AppDelegate.h */,
+				18E730351AD50DD40056B603 /* AppDelegate.m */,
+				18E730371AD50DD40056B603 /* ViewController.h */,
+				18E730381AD50DD40056B603 /* ViewController.m */,
+				18E7303A1AD50DD40056B603 /* Main.storyboard */,
+				18E7303D1AD50DD40056B603 /* Images.xcassets */,
+				18E7303F1AD50DD40056B603 /* LaunchScreen.xib */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E7305D1AD5127C0056B603 /* PromptView.m in Sources */,
 				18E730391AD50DD40056B603 /* ViewController.m in Sources */,
 				18E730361AD50DD40056B603 /* AppDelegate.m in Sources */,
 				18E730331AD50DD40056B603 /* main.m in Sources */,
@@ -345,8 +367,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: weiming lu (55SX8D44B8)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BottomPrompt",
+				);
 				INFOPLIST_FILE = BottomPrompt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,8 +385,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: weiming lu (55SX8D44B8)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BottomPrompt",
+				);
 				INFOPLIST_FILE = BottomPrompt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
