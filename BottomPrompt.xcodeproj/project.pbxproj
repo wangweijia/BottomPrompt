@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1848B55A1AD61A0400C818A8 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1848B5591AD61A0400C818A8 /* Reveal.framework */; };
 		18E730331AD50DD40056B603 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E730321AD50DD40056B603 /* main.m */; };
 		18E730361AD50DD40056B603 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E730351AD50DD40056B603 /* AppDelegate.m */; };
 		18E730391AD50DD40056B603 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E730381AD50DD40056B603 /* ViewController.m */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1848B5591AD61A0400C818A8 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		18E7302D1AD50DD40056B603 /* BottomPrompt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomPrompt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E730311AD50DD40056B603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18E730321AD50DD40056B603 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1848B55A1AD61A0400C818A8 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 		18E730571AD50E8C0056B603 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1848B5591AD61A0400C818A8 /* Reveal.framework */,
 				18E730341AD50DD40056B603 /* AppDelegate.h */,
 				18E730351AD50DD40056B603 /* AppDelegate.m */,
 				18E730371AD50DD40056B603 /* ViewController.h */,
@@ -376,7 +380,12 @@
 				INFOPLIST_FILE = BottomPrompt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -394,7 +403,12 @@
 				INFOPLIST_FILE = BottomPrompt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -452,6 +466,7 @@
 				18E730521AD50DD40056B603 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18E730531AD50DD40056B603 /* Build configuration list for PBXNativeTarget "BottomPromptTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +475,7 @@
 				18E730551AD50DD40056B603 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

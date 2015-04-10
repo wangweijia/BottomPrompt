@@ -18,8 +18,10 @@
 @property (nonatomic, strong) NSMutableArray *LabelArray;
 //下方 地址复制 按钮
 @property (nonatomic, weak) UIButton *CopyBtn;
-
+//分享控件
 @property (nonatomic, weak) UIView *shareView;
+
+@property (nonatomic, assign) BOOL isShow;
 @end
 
 @implementation PromptView
@@ -29,7 +31,7 @@
         self.BtnArray = [NSMutableArray array];
         self.LabelArray = [NSMutableArray array];
         self.backgroundColor = [UIColor yellowColor];
-        
+        [self setIsShow:NO];
         [self initBgView];
     }
     return self;
@@ -45,7 +47,9 @@
     _itemDic = itemDic;
     [self initControl];
 }
-
+/**
+ *  初始化 背景view
+ */
 - (void)initBgView{
     [self setFrame:[[UIScreen mainScreen] bounds]];
     [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5]];
@@ -58,7 +62,9 @@
     [self addSubview:shareView];
     [self setShareView:shareView];
 }
-
+/**
+ *  初始化 分享部分按钮
+ */
 - (void)initControl{
     NSArray *nameKey = [_itemDic allKeys];
     for (NSInteger i = 0; i < nameKey.count; i++) {
@@ -88,10 +94,18 @@
     [self.shareView addSubview:copyBtn];
     [self setCopyBtn:copyBtn];
 }
-
+/**
+ *  显示 时加载 各控件尺寸
+ */
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+    [self initFrame];
+}
+/**
+ *  初始化各控件 frame
+ */
+- (void)initFrame{
     //按钮与label的布局
     NSInteger j = 0;
     for (NSInteger i = 0; i < _itemDic.count; i++) {
@@ -127,10 +141,19 @@
     
     //计算整个控件的高度
     CGFloat viewH = CGRectGetMaxY(_CopyBtn.frame) + BETWEEN;
-    CGFloat viewY = DEVICE_SCREEN_HEIGHT - viewH;//20:头部导航栏高度
-    self.shareView.frame = CGRectMake(0, viewY, DEVICE_SCREEN_WIDTH, viewH);
+//        CGFloat viewY = DEVICE_SCREEN_HEIGHT - viewH;
+    self.shareView.frame = CGRectMake(0, DEVICE_SCREEN_HEIGHT, DEVICE_SCREEN_WIDTH, viewH);
+    
+    if (!_isShow) {
+        [self animateIn];
+    }
+    [self setIsShow:YES];
 }
-
+/**
+ *  分享按钮点击事件
+ *
+ *  @param sender 按钮
+ */
 - (void)shareBtnClick:(UIButton *)sender{
     NSLog(@"share按钮");
     if ([self.delegate respondsToSelector:@selector(shareBtnClicked:)]) {
@@ -138,7 +161,11 @@
     }
     [self end];
 }
-
+/**
+ *  拷贝按钮点击事件
+ *
+ *  @param sender 按钮
+ */
 - (void)copyBtnClick:(UIButton *)sender{
     NSLog(@"copy按钮");
     if ([self.delegate respondsToSelector:@selector(copyBtnClicked:)]) {
@@ -146,19 +173,46 @@
     }
     [self end];
 }
-
+/**
+ *  空白部分点击事件
+ *
+ *  @param sender 按钮
+ */
 - (void)Actiondo:(id)sender{
     NSLog(@"点击事件");
     [self end];
 }
-
+/**
+ *  显示分享控件
+ */
 - (void)show{
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:self];
+    [self setNeedsLayout];
+    
+}
+/**
+ *  结束分享控件
+ */
+- (void)end{
+    [self animateOut];
 }
 
-- (void)end{
-    [self removeFromSuperview];
+-(void)animateIn{
+    CGFloat H = self.shareView.frame.size.height;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shareView.transform = CGAffineTransformTranslate(_shareView.transform, 0, -H);
+    }];
+}
+
+-(void)animateOut{
+    CGFloat H = self.shareView.frame.size.height;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shareView.transform = CGAffineTransformTranslate(_shareView.transform, 0, H);
+    } completion:^(BOOL finished) {
+        [self setIsShow:NO];
+        [self removeFromSuperview];
+    }];
 }
 
 @end
