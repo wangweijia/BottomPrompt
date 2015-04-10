@@ -131,12 +131,21 @@
     }
     
     //下方单独按钮
-    CGFloat copyBtnW = [_CopyBtn.titleLabel.text sizeWithFont:_CopyBtn.titleLabel.font].width;
-    CGFloat copyBtnH = [_CopyBtn.titleLabel.text sizeWithFont:_CopyBtn.titleLabel.font].height;
+    CGFloat copyBtnW = [_CopyBtn.titleLabel.text sizeWithFont:_CopyBtn.titleLabel.font].width + 10.0;
+    CGFloat copyBtnH = [_CopyBtn.titleLabel.text sizeWithFont:_CopyBtn.titleLabel.font].height + 10.0;
     CGFloat copyBtnX = (DEVICE_SCREEN_WIDTH - copyBtnW) / 2.0;
     UILabel *lab = [_LabelArray lastObject];
     CGFloat copyBtnY = CGRectGetMaxY(lab.frame) + 30.0;
     [self.CopyBtn setFrame:CGRectMake(copyBtnX, copyBtnY, copyBtnW, copyBtnH)];
+    
+    UIImage *bgNormal = [UIImage imageNamed:@"border_btn01"];
+    UIEdgeInsets insetNormal = UIEdgeInsetsMake((bgNormal.size.height-1)/2, (bgNormal.size.width-1)/2, (bgNormal.size.height+1)/2, (bgNormal.size.width+1)/2);
+    
+    UIImage *bgHighlighted = [UIImage imageNamed:@"settingbtn03"];
+    UIEdgeInsets insetHighlighted = UIEdgeInsetsMake((bgHighlighted.size.height-1)/2, (bgHighlighted.size.width-1)/2, (bgHighlighted.size.height+1)/2, (bgHighlighted.size.width+1)/2);
+    
+    [self.CopyBtn setBackgroundImage:[bgNormal resizableImageWithCapInsets:insetNormal] forState:UIControlStateNormal];
+    [self.CopyBtn setBackgroundImage:[bgHighlighted resizableImageWithCapInsets:insetHighlighted] forState:UIControlStateHighlighted];
     
     
     //计算整个控件的高度
